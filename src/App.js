@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { BrowserRouter as Router,  Switch, Route, Link } from 'react-router-dom';
@@ -16,14 +16,14 @@ import Signup from './pages/Signup';
 import PageNotFound from './pages/PageNotFound';
 
 import UserContext from './context/UserContext';
-import Footer from './layout/Footer';
 import Header from './layout/Header';
+import Footer from './layout/Footer';
 
 const App = () => {
   const [user , setUser] = useState(null);
   return (
   <div className="App">
-    <Router>
+     <Router>
         <ToastContainer/>
           <UserContext.Provider value={{user , setUser}}>
           <Header/>
