@@ -2,26 +2,35 @@ import React, { useState } from 'react';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { BrowserRouter as Router,  Switch, Route, Link } from 'react-router-dom';
+// firebase
+import firebase from 'firebase/app';
+import "firebase/auth";
+
 import Home from './pages/Home';
 import Signin from './pages/Signin';
 import Signup from './pages/Signup';
 import PageNotFound from './pages/PageNotFound';
 
-function App() {
+import UserContext from './context/UserContext';
+
+const App = () => {
+  const [user , setUser] = useState(null);
   return (
     <div className="App">
       <Router>
-         <Switch>
-           <Route path="/signin" component={Signin} />
-           <Route path="/signup" component={Signup} />
-           <Route exact path="/" component={Home} />
-           <Route component={PageNotFound} /> 
-         </Switch>
+        <ToastContainer/>
+          <UserContext.Provider value={{user , setUser}}>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signin" component={Signin} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="*" component={PageNotFound} /> 
+          </Switch>
+          </UserContext.Provider> 
       </Router>
     </div>
   );
