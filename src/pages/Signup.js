@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Container, Form, Button, FormGroup, Label, Col, Input, Row, Card, CardBody, CardFooter, CardHeader} from 'reactstrap';
 
 import firebase from 'firebase/app';
@@ -6,8 +6,6 @@ import UserContext from '../context/UserContext';
 
 import {Redirect} from 'react-router-dom';
 import {toast} from 'react-toastify';
-
-
 
 const Signup = () => {
     const context = useContext(UserContext);
@@ -21,9 +19,10 @@ const Signup = () => {
         .createUserWithEmailAndPassword(email, password)
         .then((res) => {
             // Signed in 
+               //passing whole data            
             console.log(res);
             context.setUser({email: res.user.email, uid: res.user.uid})
-           
+          
             // ...
         })
         .catch((error) => {
@@ -39,11 +38,42 @@ const Signup = () => {
        e.preventDefault();
        handleSignUp();
     }
+  
 
-    return (
-        <div>
-            <h1>Signup Page in React js</h1>
-        </div>
+   if(context.user?.uid){
+       return <Redirect to="/" />
+   }
+
+return (
+<Container className="text-center">
+ <Row>
+    <Col lg='6' className="offset-lg-3 mt-5">
+    <Card>
+    <Form onSubmit={handleSubmit}>
+        {/* <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" /> */}
+        <CardHeader>Register Here</CardHeader>
+        <CardBody>
+          <FormGroup row>
+            <Label for="email" sm-3={3}>Email</Label>
+            <Col sm={9}>
+              <Input type="email" name="email" id="email" placeholder="Your Email" value={email} onChange={(e)=> setEmail(e.target.value)} />
+            </Col>
+          </FormGroup>
+          <FormGroup row>
+            <Label for="examplePassword" sm-3={3}>Password</Label>
+            <Col sm={9}>
+              <Input type="password" name="password" id="password" placeholder="Enter your password" value={password} onChange={(e)=> setPassword(e.target.value)} />
+            </Col>
+          </FormGroup>
+        </CardBody>
+        <CardFooter>
+         <Button type="submit" block color='primary'>Button</Button>
+        </CardFooter>
+    </Form>
+    </Card>
+    </Col>
+ </Row> 
+</Container>
     )
 }
 

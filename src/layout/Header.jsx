@@ -17,6 +17,8 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
+  
+
 return (
  <div>
     <Navbar color="dark" light expand="md">
@@ -29,7 +31,8 @@ return (
           {
             context.user ? (
             <NavItem>
-              <NavLink tag={Link} to="/*" className="text-light">Logout</NavLink>
+              <NavLink onClick={()=> (context.setUser(null))} className="text-light">Logout</NavLink>
+             
             </NavItem>
             ) : (
              <>
