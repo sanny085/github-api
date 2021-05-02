@@ -39,7 +39,6 @@ const Signin = () => {
        handleSignUp();
     }
   
-
    if(context.user?.uid){
        return <Redirect to="/" />
    }
