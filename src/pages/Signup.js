@@ -22,9 +22,9 @@ const Signup = () => {
                //passing whole data            
             console.log(res);
             context.setUser({email: res.user.email, uid: res.user.uid})
-          
+            
             // ...
-        })
+        }) 
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;

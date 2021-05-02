@@ -1,19 +1,58 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
-import { Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Row, Container, Col, Input, Button, Form, InputGroup, InputGroupAddon } from 'reactstrap';
 import Axios from 'axios';
+
+import UserCart from '../components/UserCart';
+import Repos from '../components/Repos';
+import {Redirect} from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import UserContext from '../context/UserContext';
 
 const Home = () => {
     const context = useContext(UserContext);
-    
+    const [query, setQuery] = useState('');
+    const [user, setUser] = useState(null);
+     
+    const fetchDetails = async () => {
+        try{
+            const { data } = await Axios.get(`https://api.github.com/users/${query}`);
+            setUser(data);
+            console.log({data}); 
+        }
+        catch(error){
+            console.log("Home error : "+error);
+            toast("Not able to locate user", { type : "error" })
+            console.log("Home Page : "+error);
+        }
+   };
+
+   //Put AnyPage behind login
+   if(!context.user?.uid) {
+       return <Redirect to="/signin" />
+   }
+
     return (
-        <div>
-            <h1>Our Home Page</h1>
-            {
-                {/* console.log("Home page input: "+ context.user.name )  */}
-            } 
-        </div>
+     <Container>
+       <Row className="mt-3">
+         <Col md="5">
+            <InputGroup>
+              <Input type="text" value={query} onChange={(e)=> setQuery(e.target.value)} placeholder="Please Provide the username" />
+              <InputGroupAddon addonType="append">
+                <Button onClick={fetchDetails} color="primary">Fetch User</Button>
+              </InputGroupAddon>
+                
+            </InputGroup>
+            
+           { user ? <UserCart user={user} /> : null }
+
+         </Col>
+         <Col md="7">
+         { user ? <Repos repos_url={user.repos_url} /> : null }
+         </Col>
+       </Row>
+     </Container>
     )
 }
 

@@ -42,7 +42,7 @@ const App = () => {
             <Footer/>
           </UserContext.Provider> 
       </Router>
-    </div>
+  </div>
   );
 }
 
