@@ -19,8 +19,14 @@ import UserContext from './context/UserContext';
 import Header from './layout/Header';
 import Footer from './layout/Footer';
 
+import firebaseConfig from './Config/firebaseConfig'
+
+// init (Initialize) Firebase
+firebase.initializeApp(firebaseConfig);
+ 
 const App = () => {
-  const [user , setUser] = useState(null);
+  const [user, setUser] = useState(null);
+
   return (
   <div className="App">
      <Router>

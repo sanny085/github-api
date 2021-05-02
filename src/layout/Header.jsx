@@ -17,7 +17,7 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
- return (
+return (
  <div>
     <Navbar color="dark" light expand="md">
      <NavbarBrand ><Link to="./" className="text-light" style={{textDecoration:'none'}}>Github Fetcher</Link></NavbarBrand>
