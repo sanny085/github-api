@@ -31,6 +31,7 @@ const Signin = () => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log("Error Message is :"+errorMessage+"errorCode is :"+errorCode);
+            alert(errorMessage);
             toast(errorMessage,{type:'error'});
             // ..
         });

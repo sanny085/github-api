@@ -26,12 +26,13 @@ firebase.initializeApp(firebaseConfig);
  
 const App = () => {
   const [user, setUser] = useState(null);
+  const [userApi, setUserApi] = useState(null);
  
   return (
   <div className="App">
      <Router>
         <ToastContainer/>
-          <UserContext.Provider value={{user , setUser}}>
+          <UserContext.Provider value={{user ,userApi, setUser, setUserApi }}>
            <Header/>
             <Switch>
               <Route exact path="/" component={Home} />
