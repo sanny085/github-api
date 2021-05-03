@@ -42,7 +42,6 @@ const Home = () => {
               <InputGroupAddon addonType="append">
                 <Button onClick={fetchDetails} color="primary">Fetch User</Button>
               </InputGroupAddon>
-                
             </InputGroup>
             
            { user ? <UserCart user={user} /> : null }
@@ -57,3 +56,4 @@ const Home = () => {
 }
 
 export default Home;
+

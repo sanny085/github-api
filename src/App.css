@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+ 
 
 .App-logo {
   height: 40vmin;
@@ -23,16 +21,27 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+ 
+.text-mono {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace!important;
+  font-weight: 400!important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App::-webkit-scrollbar {
+  width: 8px;
+}
+/* Track */
+.App::-webkit-scrollbar-track {
+    background: #758283; 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+/* Handle */
+.App::-webkit-scrollbar-thumb {
+  background: #758283; 
+  border-radius:15px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px; 
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }

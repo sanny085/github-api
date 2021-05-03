@@ -38,37 +38,39 @@ const Signup = () => {
        e.preventDefault();
        handleSignUp();
     }
-  
 
    if(context.user?.uid){
        return <Redirect to="/" />
    }
 
 return (
-<Container className="text-center">
+<Container>
  <Row>
-    <Col lg='6' className="offset-lg-3 mt-5">
-    <Card>
+    <Col lg='6' className="offset-lg-3 mt-4">
+    <Card className="border-0 ">
     <Form onSubmit={handleSubmit}>
         {/* <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" /> */}
-        <CardHeader>Register Here</CardHeader>
-        <CardBody>
-          <FormGroup row>
-            <Label for="email" sm-3={3}>Email</Label>
-            <Col sm={9}>
-              <Input type="email" name="email" id="email" placeholder="Your Email" value={email} onChange={(e)=> setEmail(e.target.value)} />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="examplePassword" sm-3={3}>Password</Label>
-            <Col sm={9}>
-              <Input type="password" name="password" id="password" placeholder="Enter your password" value={password} onChange={(e)=> setPassword(e.target.value)} />
-            </Col>
-          </FormGroup>
+        <CardHeader className="border-0 bg-light">
+          <div className="p-2 text-center text-mono">Join Github Fetcher</div>
+          <h2 className="d-none d-md-block mt-0 mb-3 text-center">Create your account</h2>
+        </CardHeader>
+        <CardBody className="mt-3">
+            <div className="mb-3">
+              <label for="email" className="form-label text-dark"><strong>Email address<span className="text-danger"> *</span></strong></label>
+              <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)}  className="form-control" name="email" id="email" aria-describedby="emailHelp" />
+              <div id="emailHelp" className="form-text" style={{fontSize:'12px',fontWeight:'400'}}>We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-1">
+                <label for="password" className="form-label text-dark"><strong>Password<span className="text-danger"> *</span></strong></label>
+                <input type="password" className="form-control" name="password" id="password" placeholder="Enter your password" value={password} onChange={(e)=> setPassword(e.target.value)}/>
+                <div className="form-text" style={{fontSize:'12px',fontWeight:'400'}}>Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.</div>
+            </div>
         </CardBody>
-        <CardFooter>
-         <Button type="submit" block color='primary'>Button</Button>
+        <CardFooter className="border-0 mb-2 bg-light">
+         <Button type="submit" block color='success'><span style={{fontWeight:'400'}}>Create account</span></Button>
         </CardFooter>
+        
+
     </Form>
     </Card>
     </Col>
