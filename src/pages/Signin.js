@@ -44,30 +44,29 @@ const Signin = () => {
    }
 
 return (
-<Container className="text-center">
+<Container  >
  <Row>
-    <Col lg='6' className="offset-lg-3 mt-5">
-    <Card>
+    <Col lg='6' className="offset-lg-3 mt-5 mx-auto">
+         <div className="p-2 text-center text">
+            <h4 style={{fontWeight:'300'}}>Sign in to Github Fetcher</h4>
+          </div>
+    <Card className="mx-auto w-75">
     <Form onSubmit={handleSubmit}>
-        {/* <CardImg top width="100%" src="/assets/318x180.svg" alt="Card image cap" /> */}
-        <CardHeader>SignIn Here</CardHeader>
-        <CardBody>
-          <FormGroup row>
-            <Label for="email" sm-3={3}>Email</Label>
-            <Col sm={9}>
-              <Input type="email" name="email" id="email" placeholder="Your Email" value={email} onChange={(e)=> setEmail(e.target.value)} />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="examplePassword" sm-3={3}>Password</Label>
-            <Col sm={9}>
-              <Input type="password" name="password" id="password" placeholder="Enter your password" value={password} onChange={(e)=> setPassword(e.target.value)} />
-            </Col>
-          </FormGroup>
+        <CardBody style={{backgroundColor:'#f6f8fa'}}>
+          <div className="mb-3">
+               <label for="email" className="form-label text-dark">Username or email address</label>
+               <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)}  className="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email Id" />
+            </div>
+          <div class="mb-1">
+                <label for="password" className="form-label text-dark">Password</label>
+                <input type="password" value={password} onChange={(e)=> setPassword(e.target.value)} className="form-control" name="password" id="password" placeholder="Enter your password" />
+          </div>
+          <div className="mt-3 mb-2">
+               <Button type="submit" block color='success'>Sign in</Button>
+          </div>
         </CardBody>
-        <CardFooter>
-         <Button type="submit" block color='primary'>Button</Button>
-        </CardFooter>
+        
+        
     </Form>
     </Card>
     </Col>
