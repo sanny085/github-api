@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Container, Form, Button, FormGroup, Label, Col, Input, Row, Card, CardBody, CardFooter, CardHeader} from 'reactstrap';
+import { Container, Form, Button, NavLink, FormGroup, Label, Col, Input, Row, Card, CardBody, CardFooter, CardHeader} from 'reactstrap';
+import {Link} from 'react-router-dom';
+
 
 import firebase from 'firebase/app';
 import UserContext from '../context/UserContext';
@@ -65,10 +67,11 @@ return (
                <Button type="submit" block color='success'>Sign in</Button>
           </div>
         </CardBody>
-        
-        
     </Form>
     </Card>
+       <div className="card text-center mt-3 w-75 mx-auto">
+         <p className="pt-3">New to GitHub? <Link tag={Link} to="/signup" className="text-primary">Create an account.</Link></p>
+       </div>
     </Col>
  </Row> 
 </Container>

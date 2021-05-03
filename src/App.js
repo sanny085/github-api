@@ -28,7 +28,7 @@ const App = () => {
   const [user, setUser] = useState(null);
  
   return (
-  <div className="App" >
+  <div className="App">
      <Router>
         <ToastContainer/>
           <UserContext.Provider value={{user , setUser}}>
