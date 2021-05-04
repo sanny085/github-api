@@ -44,12 +44,14 @@ const Header = () => {
             toast("Not able to locate user", { type : "error" })
         }
    };
+   useEffect( ()=>{
+    context.setUserApi(user);
+   },[user])
    
    const submitForm = (e) => {
      e.preventDefault();
      fetchDetails(); 
-     context.setUserApi(user);
-     console.log("Header page :"+context.user?.userApi) 
+     console.log("Header page :"+context.userApi) 
   };
 
     const toggle = () => setIsOpen(!isOpen);
@@ -69,11 +71,11 @@ return (
             context.user ? (
               <>
            <NavItem>
-           <Form onSubmit={submitForm}>
+           <Form>
             <InputGroup>
                 <Input type="text" value={query} onChange={(e)=> setQuery(e.target.value)} placeholder="Please Provide the username" />
                 <InputGroupAddon addonType="append">
-                  <Button outline  color="light">Fetch User</Button>
+                  <Button outline onClick={submitForm} color="light">Fetch User</Button>
                 </InputGroupAddon>
               </InputGroup>
               </Form>
