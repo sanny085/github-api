@@ -9,6 +9,7 @@ import {Redirect} from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import UserContext from '../context/UserContext';
+import NavHeader from '../components/NavHeader';
 
 const Home = () => {
     const context = useContext(UserContext);
@@ -48,6 +49,8 @@ const Home = () => {
 
          </Col>
          <Col md="9">
+         { context.user ? <NavHeader repos_url={context.userApi?.repos_url} /> : null }
+
          { context.user ? <Repos repos_url={context.userApi?.repos_url} /> : null }
          </Col>
        </Row>
