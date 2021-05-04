@@ -34,9 +34,9 @@ const Home = () => {
    }
 
     return (
-     <Container>
+     <Container fluid>
        <Row className="mt-3">
-         <Col md="5">
+         <Col md="3">
             {/* <InputGroup>
               <Input type="text" value={query} onChange={(e)=> setQuery(e.target.value)} placeholder="Please Provide the username" />
               <InputGroupAddon addonType="append">
@@ -47,7 +47,7 @@ const Home = () => {
            { context.user ? <UserCart user={context.userApi} /> : null }
 
          </Col>
-         <Col md="7">
+         <Col md="9">
          { context.user ? <Repos repos_url={context.userApi?.repos_url} /> : null }
          </Col>
        </Row>
