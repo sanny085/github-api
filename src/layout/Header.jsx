@@ -1,7 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {
     Button,
-    Form,
     FormGroup,
     Label,
     Input,
@@ -44,7 +43,7 @@ const Header = () => {
             toast("Not able to locate user", { type : "error" })
         }
    };
-   useEffect( ()=>{
+   useEffect( ()=> {
     context.setUserApi(user);
    },[user])
    
@@ -71,14 +70,14 @@ return (
             context.user ? (
               <>
            <NavItem>
-           <Form>
+        
             <InputGroup>
                 <Input type="text" value={query} onChange={(e)=> setQuery(e.target.value)} placeholder="Please Provide the username" />
                 <InputGroupAddon addonType="append">
                   <Button outline onClick={submitForm} color="light">Fetch User</Button>
                 </InputGroupAddon>
-              </InputGroup>
-              </Form>
+            </InputGroup>
+            
            </NavItem>
            
             <NavItem>
