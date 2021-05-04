@@ -46,12 +46,14 @@ const Home = () => {
             </InputGroup> */}
             
            { context.user ? <UserCart user={context.userApi} /> : null }
-
+          
          </Col>
          <Col md="9">
-          <NavHeader/>   
-          { context.user ? <UserCart user={context.userApi} /> : null }
-         { context.user ? <Repos repos_url={context.userApi?.repos_url} /> : null }
+              {context.user ? <NavHeader /> : ''}
+        
+     
+               { context.user ? <Repos repos_url={context.userApi?.repos_url} /> : null }
+       
          </Col>
        </Row>
      </Container>

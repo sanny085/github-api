@@ -17,6 +17,8 @@ const UserCart = ({user}) => {
               <span className="text-muted">{(user?.location) ?   ( "Location : "+user?.location) : (" ") }</span>
               <div className="text-danger">Available for Hier : {user?.hireable ? "Yes" : "No"}</div>
              </CardBody>
+
+             <p>Ram</p>
         </Card>
     )
 }
