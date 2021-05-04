@@ -37,7 +37,6 @@ const Header = () => {
             const { data } = await Axios.get(`https://api.github.com/users/${query}`);
             console.log("Header page Api CAlling : "+{data});
             setUser(data);
-            context.setUserApi(user);
             console.log("Header 1 : "+{data});
         }
         catch(error){
@@ -45,20 +44,16 @@ const Header = () => {
             toast("Not able to locate user", { type : "error" })
         }
    };
-  
-    
-
+   
    const submitForm = (e) => {
      e.preventDefault();
-     fetchDetails();
-    
-    console.log("Header page :"+context.user?.userApi) 
+     fetchDetails(); 
+     context.setUserApi(user);
+     console.log("Header page :"+context.user?.userApi) 
   };
 
     const toggle = () => setIsOpen(!isOpen);
     const toggle1 = () => setDropdownOpen(prevState => !prevState);
-
-  
 
 return (
  <div>
@@ -76,7 +71,7 @@ return (
            <NavItem>
            <Form onSubmit={submitForm}>
             <InputGroup>
-                <Input type="text" value={query} onChange={(e)=> (setQuery(e.target.value))} placeholder="Please Provide the username" />
+                <Input type="text" value={query} onChange={(e)=> setQuery(e.target.value)} placeholder="Please Provide the username" />
                 <InputGroupAddon addonType="append">
                   <Button outline  color="light">Fetch User</Button>
                 </InputGroupAddon>
@@ -85,23 +80,22 @@ return (
            </NavItem>
            
             <NavItem>
-            <Dropdown direction="left" className="border-0" isOpen={dropdownOpen} toggle={toggle1}>
-              <DropdownToggle caret className="bg-none border-0" style={{backgroundColor:'#343a40'}}>
-                   <FaUserCircle className="text-light h4"/>
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem header>{context.user?.email ? context.user.email : " " }</DropdownItem>
-                <DropdownItem divider></DropdownItem>
-                <DropdownItem>Your Profile</DropdownItem>
-                <DropdownItem>Your Repository</DropdownItem>
-                <DropdownItem>Your Project</DropdownItem>
-                <DropdownItem>Your stars</DropdownItem>
-                <DropdownItem text> 
-                <NavLink onClick={()=> (context.setUser(null))} className="text-dark">Logout</NavLink>
-               </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-               
+              <Dropdown direction="left" className="border-0" isOpen={dropdownOpen} toggle={toggle1}>
+                <DropdownToggle caret className="bg-none border-0" style={{backgroundColor:'#343a40'}}>
+                    <FaUserCircle className="text-light h4"/>
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem header>{context.user?.email ? context.user.email : " " }</DropdownItem>
+                  <DropdownItem divider></DropdownItem>
+                  <DropdownItem>Your Profile</DropdownItem>
+                  <DropdownItem>Your Repository</DropdownItem>
+                  <DropdownItem>Your Project</DropdownItem>
+                  <DropdownItem>Your stars</DropdownItem>
+                  <DropdownItem text> 
+                  <NavLink onClick={()=> (context.setUser(null))} className="text-dark">Logout</NavLink>
+                </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </NavItem>
             </>
             ) : (
