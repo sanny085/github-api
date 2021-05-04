@@ -49,8 +49,8 @@ const Home = () => {
 
          </Col>
          <Col md="9">
-         { context.user ? <NavHeader repos_url={context.userApi?.repos_url} /> : null }
-
+          <NavHeader/>   
+          { context.user ? <UserCart user={context.userApi} /> : null }
          { context.user ? <Repos repos_url={context.userApi?.repos_url} /> : null }
          </Col>
        </Row>
