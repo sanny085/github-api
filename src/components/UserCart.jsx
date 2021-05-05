@@ -5,7 +5,7 @@ import { GoLocation } from "react-icons/go";
 
 const UserCart = ({user}) => {
     return (
-        <Card className="mb-4"  > 
+        <Card className="mb-4"> 
             <img src={user?.avatar_url} alt={user?.login} className="p-1" style={{borderRadius:'50%',width:'275px'}}/>
             <CardBody>
               <h2 className="card-title text-left">{user?.name}</h2>
@@ -15,13 +15,12 @@ const UserCart = ({user}) => {
               <div className="text-dark">{user?.followers ?  (user.followers + " followers") : " "}&nbsp;&nbsp;&nbsp;&nbsp;{user?.following ?  (user.following + " following") : " "}</div>
               <br/>
               <span className="text-muted">{(user?.location) ?   ( "Location : "+user?.location) : (" ") }</span>
-              <div className="text-danger">Available for Hier : {user?.hireable ? "Yes" : "No"}</div>
-             </CardBody>
-
-             <p>Ram</p>
+              <div className="text-danger">{ (user?.hireable) ? ("Available for Hier : "+(user?.hireable)) ? ("Yes") : ("Noo") : " "} </div>
+            
+            </CardBody>
         </Card>
     )
 }
  
-
 export default UserCart;
+

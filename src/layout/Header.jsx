@@ -53,8 +53,8 @@ const Header = () => {
      console.log("Header page :"+context.userApi) 
   };
 
-    const toggle = () => setIsOpen(!isOpen);
-    const toggle1 = () => setDropdownOpen(prevState => !prevState);
+   const toggle = () => setIsOpen(!isOpen);
+   const toggle1 = () => setDropdownOpen(prevState => !prevState);
 
 return (
  <div>
