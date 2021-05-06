@@ -1,18 +1,15 @@
 import React, { useState } from 'react'
 
 import {
-    Card,
-    CardActionArea,
+    
     Grid,
-    Grow,
-    Tabs,
-    Typography
+    Tabs
 } from "@material-ui/core";
 import Tab from '@material-ui/core/Tab';
 import {Button} from 'reactstrap';
-import './NavHeader.css'
+import './AddContact.css'
 
-const NavHeader = () => {
+const AddContact = () => {
     const [tabvalue, setTabvalue] = useState("Overview");
    
     const ResumeData = {
@@ -62,4 +59,4 @@ return (
     )
 }
 
-export default NavHeader
+export default AddContact;
