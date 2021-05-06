@@ -1,0 +1,34 @@
+.MuiTab-root {
+    padding: 6px 12px;
+    overflow: hidden;
+    position: relative;
+    font-size: 0.975rem;
+    max-width: 264px;
+    min-width: 72px;
+    box-sizing: border-box;
+    min-height: 48px;
+    text-align: center;
+    flex-shrink: 0;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1.75;
+    white-space: normal;
+    letter-spacing: 0.02857em;
+    text-transform: none !important; 
+}
+.customTabs .customTabs_item{
+    padding:0px !important;
+    min-width: 0px !important;
+    margin-right:20px !important;
+    text-transform: inherit !important;
+    font-size:14px !important;
+    font-weight: 400 !important;
+    outline-width:0px !important;
+}
+.customTabs .active{
+    font-size:15px !important;
+    border-bottom: 2px solid #f9826c !important;
+  }
+
+
+
