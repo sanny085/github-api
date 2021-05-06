@@ -19,7 +19,7 @@ export default (state, action) => {
    case CONTACT_TO_UPDATE:
     return {...state, contactToUpdate: action.payload, contactToUpdateKey: action.key};
    
-    case SET_SINGLE_CONTACT:
+   case SET_SINGLE_CONTACT:
     return {...state, contact: action.payload};  
  
    default:
