@@ -60,7 +60,7 @@ const Header = () => {
 return (
  <div>
     <Navbar color="dark" light expand="md" className="p-3">
-     <NavbarBrand ><Link to="./" className="text-light" style={{textDecoration:'none'}}>Github Fetcher</Link></NavbarBrand>
+     <NavbarBrand tag={Link} to="./" className="text-light" style={{textDecoration:'none'}}>Github Fetcher</NavbarBrand>
        <NavbarText className="text-secondary"></NavbarText>
        
         <NavbarToggler onClick={toggle} />
