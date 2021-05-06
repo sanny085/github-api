@@ -36,20 +36,21 @@ const Header = () => {
             const { data } = await Axios.get(`https://api.github.com/users/${query}`);
             console.log("Header page Api CAlling : "+{data});
             setUser(data);
-            console.log("Header 1 : "+{data});
         }
         catch(error){
             console.log("Header error : "+error.message);
             toast("Not able to locate user", { type : "error" })
         }
    };
-   useEffect( ()=> {
+   useEffect( ()=>{
     context.setUserApi(user);
+    console.log("Header useEffect 1");
    },[user])
    
    const submitForm = (e) => {
      e.preventDefault();
      fetchDetails(); 
+     console.log("Header useEffect 2");
      console.log("Header page :"+context.userApi) 
   };
 

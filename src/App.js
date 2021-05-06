@@ -32,7 +32,7 @@ const App = () => {
   <div className="App">
      <Router>
         <ToastContainer/>
-          <UserContext.Provider value={{user ,userApi, setUser, setUserApi }}>
+          <UserContext.Provider value={{user ,userApi, setUser, setUserApi}}>
            <Header/>
             <Switch>
               <Route exact path="/" component={Home} />

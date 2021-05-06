@@ -59,7 +59,7 @@ return (
           <div className="mb-3">
                <label for="email" className="form-label text-dark">Username or email address</label>
                <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)}  className="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Email Id" />
-            </div>
+         </div>
           <div class="mb-1">
                 <label for="password" className="form-label text-dark">Password</label>
                 <input type="password" value={password} onChange={(e)=> setPassword(e.target.value)} className="form-control" name="password" id="password" placeholder="Enter your password" />
