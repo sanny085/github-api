@@ -75,6 +75,81 @@ const AddContact = () => {
         }
     }, [contactToUpdate]);
 
+  
+   // To upload image to firebase and then set the the image link in the state of the app
+   const imagePicker = async e => {
+    // TODO: upload image and set D-URL to state
+    try {
+      const file = e.target.files[0];
+
+      var metadata = {
+        contentType: file.type
+      };
+
+      let resizedImage = await readAndCompressImage(file, imageConfig);
+      const storageRef = await firebase.storage().ref();
+      var uploadTask = storageRef
+        .child("images/" + file.name)
+        .put(resizedImage, metadata);
+
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, snapshot => {
+        setIsUploading(true);
+        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        
+        switch (snapshot.state) {
+          case firebase.storage.TaskState.PAUSED:
+            setIsUploading(false);
+            console.log("UPloading is paused");
+            break;
+          case firebase.storage.TaskState.RUNNING:
+            console.log("UPloading is in progress...");
+            break;
+        }
+       if(progress == 100){
+        setIsUploading(false);
+        toast("uploaded", {type: "success"})
+       }
+
+      });
+    }
+    catch (error) {
+      console.error(error);
+      toast("Something went wrong", { type: "error" });
+    }
+
+  };
+
+  // setting contact to firebase DB
+  const addContact = async () => {
+    //TODO: add contact method
+  };
+
+  // to handle update the contact when there is contact in state and the user had came from clicking the contact update icon
+  const updateContact = async () => {
+    //TODO: update contact method
+  };
+
+  // firing when the user click on submit button or the form has been submitted
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    // isUpdate wll be true when the user came to update the contact
+    // when their is contact then updating and when no contact to update then adding contact
+    //TODO: set isUpdate value
+
+    // to handle the bug when the user visit again to add contact directly by visiting the link
+    dispatch({
+      type: CONTACT_TO_UPDATE,
+      payload: null,
+      key: null
+    });
+
+    // after adding/updating contact then sending to the contacts
+    // TODO :- also sending when their is any errors
+    history.push("/");
+  };
+
+
 
 return (
 <>
