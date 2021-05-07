@@ -12,7 +12,7 @@ import firebase from "firebase/app";
 
 // context stuffs
 //TODO: DONE import context and action: update and single_contact
-import { ContactContext } from "../context/Context";
+import UserContext from '../context/UserContext';
 import { CONTACT_TO_UPDATE, SET_SINGLE_CONTACT } from "../context/action.types";
 
 import { useHistory } from "react-router-dom";
@@ -21,7 +21,7 @@ import { toast } from "react-toastify";
 
 const Contact = ({ contact, contactKey }) => {
   //TODO: DONE destructuring dispatch from the context
-  const { dispatch } = useContext(ContactContext);
+  const { dispatch } = useContext(UserContext);
 
   // history hooks to get history
   const history = useHistory();
@@ -63,7 +63,11 @@ const Contact = ({ contact, contactKey }) => {
   const updateContact = () => {
     // dispatching one action to update contact
     //TODO: use dispatch to update
-
+    dispatch({
+      type: CONTACT_TO_UPDATE,
+      payload: contact,
+      key: contactKey
+    })
     // and pushing to the add contact screen
     history.push("/contact/add");
   };
@@ -72,7 +76,10 @@ const Contact = ({ contact, contactKey }) => {
   const viewSingleContact = contact => {
     // setting single contact in state
     //TODO: use dispatch to view single contact
-
+    dispatch({
+      type: SET_SINGLE_CONTACT,
+      payload: contact
+    })
     // sending...
     history.push("/contact/view");
   };
@@ -80,10 +87,7 @@ const Contact = ({ contact, contactKey }) => {
   return (
     <>
       <Row>
-        <Col
-          md="1"
-          className="d-flex justify-content-center align-items-center"
-        >
+        <Col md="1" className="d-flex justify-content-center align-items-center">
           <div className="icon" onClick={() => updateImpContact()}>
             {contact.star ? (
               <FaStar className=" text-primary" />
@@ -92,10 +96,7 @@ const Contact = ({ contact, contactKey }) => {
             )}
           </div>
         </Col>
-        <Col
-          md="2"
-          className="d-flex justify-content-center align-items-center"
-        >
+        <Col md="2" className="d-flex justify-content-center align-items-center">
           <img src={contact.picture} alt="" className="img-circle profile" />
         </Col>
         <Col md="8" onClick={() => viewSingleContact(contact)}>
@@ -108,19 +109,9 @@ const Contact = ({ contact, contactKey }) => {
 
           <div className="text-info">{contact.address}</div>
         </Col>
-        <Col
-          md="1"
-          className="d-flex justify-content-center align-items-center"
-        >
-          <MdDelete
-            onClick={() => deleteContact()}
-            color="danger"
-            className="text-danger icon"
-          />
-          <MdEdit
-            className="icon text-info ml-2"
-            onClick={() => updateContact()}
-          />
+        <Col md="1" className="d-flex justify-content-center align-items-center">
+          <MdDelete onClick={() => deleteContact()} color="danger" className="text-danger icon" />
+          <MdEdit className="icon text-info ml-2" onClick={() => updateContact()} />
         </Col>
       </Row>
     </>
