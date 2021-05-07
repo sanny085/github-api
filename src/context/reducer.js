@@ -1,5 +1,4 @@
 //TODO: Done: create contact using all actions
-
 import {
   SET_CONTACT,
   SET_LOADING,

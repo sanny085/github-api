@@ -87,6 +87,7 @@ const AddContact = () => {
       };
 
       let resizedImage = await readAndCompressImage(file, imageConfig);
+
       const storageRef = await firebase.storage().ref();
       var uploadTask = storageRef
         .child("images/" + file.name)
@@ -111,10 +112,18 @@ const AddContact = () => {
        }
 
       },
-      err => {
+      error => {
         toast('Something is wrong in state change', {type:'error'})
+       },
+      () => {
+        uploadTask.snapshot.ref.getDownloadURL()
+        .then( downloadURL => {
+          setDownloadUrl({downloadURL})
+        })
+        .catch(err => console.log(err))
       }
-      );
+      
+     );
     }
     catch (error) {
       console.error(error);
@@ -152,7 +161,6 @@ const AddContact = () => {
     // TODO :- also sending when their is any errors
     history.push("/");
   };
-
 
 
 return (
