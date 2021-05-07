@@ -94,8 +94,8 @@ const AddContact = () => {
         .put(resizedImage, metadata);
 
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, snapshot => {
-        setIsUploading(true);
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+       setIsUploading(true);
+       var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         
        switch (snapshot.state) {
           case firebase.storage.TaskState.PAUSED:
@@ -105,7 +105,7 @@ const AddContact = () => {
           case firebase.storage.TaskState.RUNNING:
             console.log("UPloading is in progress...");
             break;
-       }
+        }
        if(progress == 100) {
         setIsUploading(false);
         toast("uploaded", {type: "success"})
