@@ -1,12 +1,9 @@
 // https://firebase.google.com/docs/database/web/read-and-write?authuser=1#read_data_once
-
 import React, { useContext } from "react";
 import { Row, Col } from "reactstrap";
-
 // icons
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
-
 //TODO: DONE add firebase
 import firebase from "firebase/app";
 
@@ -71,7 +68,6 @@ const Contact = ({ contact, contactKey }) => {
     // and pushing to the add contact screen
     history.push("/contact/add");
   };
-
   // to view a single contact in the contact/view screen
   const viewSingleContact = contact => {
     // setting single contact in state
@@ -83,8 +79,7 @@ const Contact = ({ contact, contactKey }) => {
     // sending...
     history.push("/contact/view");
   };
-
-  return (
+return (
     <>
       <Row>
         <Col md="1" className="d-flex justify-content-center align-items-center">
@@ -106,7 +101,6 @@ const Contact = ({ contact, contactKey }) => {
           <div className="text-secondary">
             {/* {FIXME: display contact email}  */}
           </div>
-
           <div className="text-info">{contact.address}</div>
         </Col>
         <Col md="1" className="d-flex justify-content-center align-items-center">
