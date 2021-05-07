@@ -79,7 +79,7 @@ const AddContact = () => {
    // To upload image to firebase and then set the the image link in the state of the app
    const imagePicker = async e => {
     // TODO: upload image and set D-URL to state
-    try {
+    try{
       const file = e.target.files[0];
 
       var metadata = {
@@ -96,7 +96,7 @@ const AddContact = () => {
         setIsUploading(true);
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         
-        switch (snapshot.state) {
+       switch (snapshot.state) {
           case firebase.storage.TaskState.PAUSED:
             setIsUploading(false);
             console.log("UPloading is paused");
@@ -104,13 +104,17 @@ const AddContact = () => {
           case firebase.storage.TaskState.RUNNING:
             console.log("UPloading is in progress...");
             break;
-        }
-       if(progress == 100){
+       }
+       if(progress == 100) {
         setIsUploading(false);
         toast("uploaded", {type: "success"})
        }
 
-      });
+      },
+      err => {
+        toast('Something is wrong in state change', {type:'error'})
+      }
+      );
     }
     catch (error) {
       console.error(error);
