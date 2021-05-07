@@ -32,6 +32,8 @@ import './AddContact.css';
 
 const AddContact = () => {
     const {state, dispatch} = useContext(UserContext);
+    
+    const [visible, setVisible] = useState(false);
 
     const [tabvalue, setTabvalue] = useState("Overview");
     const ResumeData = {
@@ -43,7 +45,7 @@ const AddContact = () => {
                 ]
             };
 
-    const {contactToUpdate, contactToUpdateKey} = state; 
+    const {contactToUpdate, contactToUpdateKey} = {state}; 
     const history = useHistory();    
     
      // simple state of all component
@@ -202,7 +204,7 @@ return (
             className={ tabvalue === 'Overview' ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'} />   
         {/*Set method remove Duplicate value from listing*/}
         { [...new Set(ResumeData.projects.map((items) => items.tag ))].map( (n)=>  (
-            <Tab label={n}  value={n} className={tabvalue === n ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'}/>
+            <Tab label={n}  onClick={()=> setVisible(false)} value={n} className={tabvalue === n ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'}/>
           ) )
         }
     </Tabs>
@@ -216,10 +218,11 @@ return (
         tabvalue === "Repository" ? (
             <>
             <div class="d-flex flex-row-reverse bd-highlight">
-              <Button color="success ">Add New </Button> 
+              <Button color="success" onClick={()=> setVisible(true)}>Add New </Button> 
             </div>
 
-    <Container fluid className="mt-5">
+  {
+    visible ? (<Container fluid className="mt-5">
       <Row>
         <Col md="6" className="offset-md-3 p-2">
           <Form onSubmit={handleSubmit}>
@@ -261,6 +264,10 @@ return (
         </Col>
       </Row>
     </Container>
+    ) : null
+   
+   }
+    
  
             </>
         ) : null 
