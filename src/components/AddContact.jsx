@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import {
     Grid, 
     Tabs } from "@material-ui/core";
-
 import Tab from '@material-ui/core/Tab';
 import { 
     Container,
@@ -28,7 +27,6 @@ import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify'; 
 import './AddContact.css';
 
-
 const AddContact = () => {
     const {state, dispatch} = useContext(UserContext);
     
@@ -43,11 +41,10 @@ const AddContact = () => {
                    {tag:'Packages'}
                 ]
             };
-
-    const {contactToUpdate, contactToUpdateKey} = {state}; 
+    const { contactToUpdate, contactToUpdateKey } = {state}; 
     const history = useHistory();    
     
-     // simple state of all component
+    // simple state of all component
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -72,9 +69,8 @@ const AddContact = () => {
             // also setting is update to true to make the update action instead the addContact action
             setIsUpdate(true);
         }
-    }, [contactToUpdate] );
+    }, [contactToUpdate]);
 
-  
    // To upload image to firebase and then set the the image link in the state of the app
    const imagePicker = async e => {
     // TODO: upload image and set D-URL to state
@@ -107,7 +103,7 @@ const AddContact = () => {
         }
        if(progress == 100) {
         setIsUploading(false);
-        toast("uploaded", {type: "success"})
+        toast("Uploaded", {type: "success"})
        }
 
       },
@@ -185,10 +181,18 @@ const AddContact = () => {
       payload: null,
       key: null
     });
-
     // after adding/updating contact then sending to the contacts
     // TODO :- also sending when their is any errors
     history.push("/");
+
+    setName('');
+    setEmail('');
+    setPhoneNumber('');
+    setAddress('');
+    setStar(false);
+     
+    // also setting is update to true to make the update action instead the addContact action
+    setIsUpdate(true);
   };
 
 
@@ -233,7 +237,7 @@ return (
                   <label htmlFor="imagepicker" className="">
                     <img src={downloadUrl} alt="" className="profile" />
                   </label>
-                  <input type="file" name="image" id="imagepicker" accept="image/*" multiple={false} onChange={e => imagePicker(e)} className="hidden" />
+                  <input type="file" name="image" onChange={e => imagePicker(e)} id="imagepicker" accept="image/*" multiple={false} className="hidden" />
                 </div>
               )}
             </div>
