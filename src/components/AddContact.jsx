@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
-
 import {
     Grid, 
     Tabs } from "@material-ui/core";
 import Tab from '@material-ui/core/Tab';
+
 import { 
     Container,
     Form,
@@ -30,17 +30,11 @@ import './AddContact.css';
 
 const AddContact = () => {
     const {state, dispatch} = useContext(UserContext);
+    
     const [visible, setVisible] = useState(false);
 
     const [tabvalue, setTabvalue] = useState("Overview");
-    const ResumeData = {
-        projects : [
-                   {tag:'Repository'},
-                   {tag:'Projects'},
-                   {tag:'Projects'},
-                   {tag:'Packages'}
-                ]
-            };
+   
     const { contactToUpdate, contactToUpdateKey } = {state}; 
     const history = useHistory();    
     
@@ -69,7 +63,17 @@ const AddContact = () => {
             // also setting is update to true to make the update action instead the addContact action
             setIsUpdate(true);
         }
-    }, [contactToUpdate]);
+    }, [contactToUpdate] );
+
+    const ResumeData = {
+      projects : [
+                 {tag:'Repository'},
+                 {tag:'Projects'},
+                 {tag:'Projects'},
+                 {tag:'Packages'}
+              ]
+          };
+
 
    // To upload image to firebase and then set the the image link in the state of the app
    const imagePicker = async e => {
@@ -92,7 +96,7 @@ const AddContact = () => {
        setIsUploading(true);
        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         
-       switch (snapshot.state) {
+       switch(snapshot.state) {
           case firebase.storage.TaskState.PAUSED:
             setIsUploading(false);
             console.log("UPloading is paused");
@@ -100,12 +104,11 @@ const AddContact = () => {
           case firebase.storage.TaskState.RUNNING:
             console.log("UPloading is in progress...");
             break;
-        }
+       }
        if(progress == 100) {
         setIsUploading(false);
         toast("Uploaded", {type: "success"})
-       }
-
+        }
       },
       error => {
         toast('Something is wrong in state change', {type:'error'})
@@ -162,6 +165,7 @@ const AddContact = () => {
     }
     catch(error){
       console.log(error);
+      toast("Oppss...", { type: "error"} );
     }
   };
 
@@ -181,6 +185,7 @@ const AddContact = () => {
       payload: null,
       key: null
     });
+
     // after adding/updating contact then sending to the contacts
     // TODO :- also sending when their is any errors
     history.push("/");
