@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+
 import {
     Grid, 
     Tabs } from "@material-ui/core";
@@ -29,7 +30,6 @@ import './AddContact.css';
 
 const AddContact = () => {
     const {state, dispatch} = useContext(UserContext);
-    
     const [visible, setVisible] = useState(false);
 
     const [tabvalue, setTabvalue] = useState("Overview");
