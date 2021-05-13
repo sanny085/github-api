@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Container, Form, Button, NavLink, FormGroup, Label, Col, Input, Row, Card, CardBody, CardFooter, CardHeader} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
-
 import firebase from 'firebase/app';
 import UserContext from '../context/UserContext';
 
@@ -11,7 +10,6 @@ import {toast} from 'react-toastify';
 
 const Signin = () => {
     const context = useContext(UserContext);
-   
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
 
@@ -24,7 +22,6 @@ const Signin = () => {
                //passing whole data            
             console.log(res);
             context.setUser({email: res.user.email, uid: res.user.uid})
-          
             // ...
         })
         .catch((error) => {
