@@ -32,9 +32,10 @@ const AddContact = () => {
     const {state, dispatch} = useContext(UserContext);
     
     const [visible, setVisible] = useState(false);
+
     const [tabvalue, setTabvalue] = useState("Overview");
    
-    const { contactToUpdate, contactToUpdateKey } = {state}; 
+    const { contactToUpdate, contactToUpdateKey } = state; 
     const history = useHistory();    
     
     // simple state of all component
@@ -67,7 +68,6 @@ const AddContact = () => {
     const ResumeData = {
       projects : [
                  {tag:'Repository'},
-                 {tag:'Projects'},
                  {tag:'Projects'},
                  {tag:'Packages'}
               ]
@@ -184,7 +184,6 @@ const AddContact = () => {
       payload: null,
       key: null
     });
-
     // after adding/updating contact then sending to the contacts
     // TODO :- also sending when their is any errors
     history.push("/");
@@ -221,7 +220,20 @@ return (
 {/*Project*/}
 <Grid container>
     <Grid item xs={12}>
+     {/*Overview*/} 
      {
+       tabvalue === "Overview" ? (
+         <>
+         
+         </>
+
+       ) : null
+     }
+    {/*End Overview*/} 
+   
+     {/*Repository*/} 
+     {
+       
         tabvalue === "Repository" ? (
             <>
             <div class="d-flex flex-row-reverse bd-highlight">
