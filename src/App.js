@@ -12,7 +12,7 @@ import "firebase/auth";
 
 import Home from './pages/Home';
 import Signin from './pages/Signin';
-import Signup from './pages/Signup';
+import Signup from './pages/Signup'; 
 import PageNotFound from './pages/PageNotFound';
 
 import UserContext from './context/UserContext';
@@ -59,7 +59,7 @@ const App = () => {
     });
 
    const contactsRef = await firebase.database().ref('/contacts');
-   contactsRef.on("value", snapshot => {
+   contactsRef.on( "value", snapshot => {
       dispatch({
         type: SET_CONTACT,
         payload: snapshot.val()
@@ -68,7 +68,9 @@ const App = () => {
         type: SET_LOADING,
         payload: false
       });
-   });
+    } 
+   );
+
   };
 
   // getting contact  when component did mount
@@ -87,10 +89,12 @@ const App = () => {
               <Route exact path="/" component={Home} />
               <Route exact path="/signin" component={Signin} />
               <Route exact path="/signup" component={Signup} />
+            
               <Route exact path="*" component={PageNotFound} /> 
             </Switch>
             <Footer/>
           </UserContext.Provider> 
+
       </Router>
   </div>
   );
