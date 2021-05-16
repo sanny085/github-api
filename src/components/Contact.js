@@ -1,9 +1,7 @@
 // https://firebase.google.com/docs/database/web/read-and-write?authuser=1#read_data_once
-
 import React, { useContext } from "react";
 import { Row, Col } from "reactstrap";
-
-// icons
+// icons 
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
 
@@ -22,10 +20,10 @@ import { toast } from "react-toastify";
 const Contact = ({ contact, contactKey }) => {
   //TODO: DONE destructuring dispatch from the context
   const { dispatch } = useContext(UserContext);
-
+  
   // history hooks to get history
   const history = useHistory();
-
+  
   // to delete the contact when delete contact is clicked
   const deleteContact = () => {
     //TODO: DONE create this method from firebase
@@ -114,6 +112,7 @@ const Contact = ({ contact, contactKey }) => {
       </Row>
     </>
   );
+  
 };
-
 export default Contact;
+
