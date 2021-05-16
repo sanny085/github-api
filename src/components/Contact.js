@@ -115,4 +115,3 @@ const Contact = ({ contact, contactKey }) => {
   
 };
 export default Contact;
-
