@@ -24,6 +24,8 @@ import { v4 } from 'uuid';
 import UserContext from '../context/UserContext';
 import {CONTACT_TO_UPDATE} from '../context/action.types';
 
+import MainContacts from '../components/MainContacts';
+
 import { useHistory } from "react-router-dom";
 import { toast } from 'react-toastify'; 
 import './AddContact.css';
@@ -224,7 +226,7 @@ return (
      {
        tabvalue === "Overview" ? (
          <>
-         
+          <MainContacts />
          </>
 
        ) : null
