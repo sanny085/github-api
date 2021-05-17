@@ -95,9 +95,9 @@ const Contact = ({ contact, contactKey }) => {
           </div>
         </Col>
         <Col md="2" className="d-flex justify-content-center align-items-center">
-          <img src={contact.picture} alt="" className="img-circle profile" />
+          <img src={contact?.picture} alt="" className="img-circle profile" />
         </Col>
-        <Col md="8" onClick={() => viewSingleContact(contact)}>
+        <Col md="7" onClick={() => viewSingleContact(contact)}>
           <div className="text-primary">{contact.name}</div>
 
           <div className="text-secondary">{contact.phoneNumber}</div>
@@ -105,9 +105,9 @@ const Contact = ({ contact, contactKey }) => {
 
           <div className="text-info">{contact.address}</div>
         </Col>
-        <Col md="1" className="d-flex justify-content-center align-items-center">
-          <MdDelete onClick={() => deleteContact()} color="danger" className="text-danger icon" />
-          <MdEdit className="icon text-info ml-2" onClick={() => updateContact()} />
+        <Col md="2" className="d-flex justify-content-center align-items-center">
+          <MdDelete className="text-danger icon btn-sm" onClick={() => deleteContact()} color="danger"  size="sm" />
+          <MdEdit className="icon text-info ml-2 btn-sm" onClick={() => updateContact()}  size="sm"/>
         </Col>
       </Row>
     </>
