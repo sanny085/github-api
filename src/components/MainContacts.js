@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 
-import { Container, ListGroup, ListGroupItem, Spinner } from "reactstrap";
+import { Container, ListGroup, ListGroupItem, Spinner, Row, Col } from "reactstrap";
 import Contact from "./Contact";
 import { MdAdd } from "react-icons/md";
 import { useHistory } from "react-router-dom";
@@ -12,10 +12,12 @@ const MainContacts = () => {
 
   // destructuring contacts and isLoading from state
   const { contacts, isLoading } = state;
-
   // history hooks from react router dom to get history
   const history = useHistory();
-
+ 
+ 
+ 
+ 
   // handle fab icon button click
   // will set in state of the contact to update and send it to the contact/add route
   const AddContact = () => {
@@ -41,23 +43,24 @@ const MainContacts = () => {
   return (
     <Container className="mt-4">
       {/* TODO: Loop through FIREBASE objects  */}
-      {contacts.length === 0 && !isLoading ? (
+      {
+       contacts.length === 0 && !isLoading ? (
         <div className="Center text-large text-primary">
           NO Contacts found in firebase
         </div>
       ) : (
         <ListGroup>
           {Object.entries(contacts).map(([key, value]) => (
-            <ListGroupItem key={key}>
-              <Contact contact={value} contactKey={key} />
+            <ListGroupItem key={key} className="m-1">
+                <Contact contact={value} contactKey={key} />
             </ListGroupItem>
-          ))}
+           ))}
         </ListGroup>
-      )}
+       )
+      }
       <MdAdd className="fab icon " onClick={AddContact} />
     </Container>
   );
 };
 
 export default MainContacts;
-
