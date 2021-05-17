@@ -40,7 +40,8 @@ const initialState = {
   contact: {},
   contactToUpdate: null,
   contactToUpdateKey: null,
-  isLoading: false
+  isLoading: false,
+  check:"nikhil"
 };
 
 const App = () => {
@@ -81,10 +82,11 @@ const App = () => {
   return (
   <div className="App">
      <Router>
-        
+         
           <UserContext.Provider value={{user ,userApi, state, dispatch, setUser, setUserApi}}>
           <ToastContainer/>
            <Header/>
+           {  console.log("Nikhil state "+state.check)}
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/signin" component={Signin} />
@@ -94,7 +96,7 @@ const App = () => {
             </Switch>
             <Footer/>
           </UserContext.Provider> 
-
+         
       </Router>
   </div>
   );
