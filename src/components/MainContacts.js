@@ -47,5 +47,4 @@ const MainContacts = () => {
     </Container>
   );
 };
-
 export default MainContacts;
