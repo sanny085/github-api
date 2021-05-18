@@ -95,7 +95,7 @@ const Contact = ({ contact, contactKey }) => {
           </div>
         </Col>
         <Col md="2" className="d-flex justify-content-center align-items-center">
-          <img src={contact?.picture} alt="" className="img-circle profile" />
+          <img src={contact.picture?.downloadURL} alt={contact.picture?.downloadURL} style={{width:'100px',height:'85px'}} className="rounded-circle profile" />
         </Col>
         <Col md="7" onClick={() => viewSingleContact(contact)}>
           <div className="text-primary">{contact.name}</div>
