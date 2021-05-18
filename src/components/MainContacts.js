@@ -1,34 +1,19 @@
 import React, { useContext} from "react";
 
 import { Container, ListGroup, ListGroupItem, Spinner, Row, Col } from "reactstrap";
-import Contact from "./Contact";
-import { MdAdd } from "react-icons/md";
-import { useHistory } from "react-router-dom";
-import UserContext from "../context/UserContext";
-import { CONTACT_TO_UPDATE } from "../context/action.types";
+import Contact from "./Contact";  
+import UserContext from "../context/UserContext"; 
 
 const MainContacts = () => {
-  const { state, dispatch } = useContext(UserContext);
+  const { state } = useContext(UserContext);
 
   // destructuring contacts and isLoading from state
   const { contacts, isLoading } = state;
   // history hooks from react router dom to get history
-  const history = useHistory();
- 
- 
- 
- 
+   
   // handle fab icon button click
   // will set in state of the contact to update and send it to the contact/add route
-  const AddContact = () => {
-    //TODO: use dispatch to send user to add contact screen
-    dispatch({
-      type: CONTACT_TO_UPDATE,
-      payload: null,
-      key: null
-    });
-    history.push("/contact/add");
-  };
+ 
 
   // return loading spinner
   if (isLoading) {
@@ -58,7 +43,7 @@ const MainContacts = () => {
         </ListGroup>
        )
       }
-      <MdAdd className="fab icon " onClick={AddContact} />
+     
     </Container>
   );
 };
