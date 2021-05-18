@@ -40,8 +40,7 @@ const initialState = {
   contact: {},
   contactToUpdate: null,
   contactToUpdateKey: null,
-  isLoading: false,
-  check:"nikhil"
+  isLoading: false 
 };
 
 const App = () => {
