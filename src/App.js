@@ -31,7 +31,6 @@ import reducer from './context/reducer';
 
 import { SET_CONTACT, SET_LOADING } from './context/action.types';
  
-
 // init (Initialize) Firebase
 firebase.initializeApp(firebaseConfig);
 
