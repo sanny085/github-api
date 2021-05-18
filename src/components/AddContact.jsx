@@ -48,7 +48,7 @@ const AddContact = () => {
     const [isUploading, setIsUploading] = useState(false);
     const [downloadUrl, setDownloadUrl] = useState(null);
     const [star, setStar] = useState(false);
-    const [isUpdate, setIsUpdate] = useState(false);
+    const [isUpdate, setIsUpdate] = useState(true);
 
     const [filename, setFilename] = useState('');
 
@@ -62,7 +62,7 @@ const AddContact = () => {
             setPhoneNumber(contactToUpdate.phoneNumber);
             setAddress(contactToUpdate.address);
             setStar(contactToUpdate.star);
-            setDownloadUrl(contactToUpdate.picture.downloadURL);
+            setDownloadUrl(contactToUpdate.picture);
 
             // also setting is update to true to make the update action instead the addContact action
             setIsUpdate(true);
@@ -119,7 +119,7 @@ const AddContact = () => {
       () => {
         uploadTask.snapshot.ref.getDownloadURL()
         .then( downloadURL => {
-          setDownloadUrl({downloadURL})
+          setDownloadUrl(downloadURL)
         })
         .catch(err => console.log(err))
       }
@@ -130,8 +130,7 @@ const AddContact = () => {
       console.error(error);
       toast("Something went wrong", { type: "error" });
     }
-
-  };
+ }; 
 
   // setting contact to firebase DB
   const addContact = async () => {
@@ -174,8 +173,9 @@ const AddContact = () => {
 
   // firing when the user click on submit button or the form has been submitted
   const handleSubmit = e => {
+
     e.preventDefault();
-    isUpdate ? updateContact() : addContact();
+    isUpdate ? addContact() : updateContact();
 
     toast('Success', {type:'success'})
     // isUpdate wll be true when the user came to update the contact
@@ -199,6 +199,7 @@ const AddContact = () => {
      
     // also setting is update to true to make the update action instead the addContact action
     setIsUpdate(true);
+
   };
 
 
@@ -213,7 +214,7 @@ return (
             className={ tabvalue === 'Overview' ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'} />   
         {/*Set method remove Duplicate value from listing*/}
         { [...new Set(ResumeData.projects.map((items) => items.tag ))].map( (n)=>  (
-            <Tab label={n}  onClick={()=> (setVisible(false), setFilename('')) } value={n} className={tabvalue === n ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'}/>
+            <Tab label={n}  onClick={()=> (setVisible(false), setFilename(''), setDownloadUrl(null)) } value={n} className={tabvalue === n ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'}/>
           ) )
         }
     </Tabs>
@@ -221,7 +222,7 @@ return (
 {/*End Tabs*/}
 
 {/*Project*/}
-<Grid container>
+<Grid container >
     <Grid item xs={12}>
      {/*Overview*/} 
      {
@@ -244,23 +245,28 @@ return (
             </div>
 
   {
-    visible ? (<Container fluid className="mt-5">
-      <Row>
+    visible ? (<Container fluid className="mt-4">
+      <Row >
         <Col md="6" className="offset-md-3 p-2">
           <Form onSubmit={handleSubmit}>
             <div className="text-center">
-              {isUploading ? (
+             { isUploading ? (
                 <Spinner type="grow" color="primary" />
-              ) : (
+              ) : 
+              (
+                <>
                 <div>
-                  <label htmlFor="imagepicker" className="label">
-                    <img src={filename} alt={filename} className="profile rounded-circle" style={{width:'40px',height:'40px'}}/>
+                  <label htmlFor="imagepicker" className="" >
+                    <img src={downloadUrl} alt={filename} className="border border-dark img-fluid rounded-circle border-secondary" style={{width:'140px',height:'140px'}}/>
                   </label>
+                  
                   <input type="file" name={filename} onChange={e => imagePicker(e)} id="imagepicker" accept="image/*" multiple={false}  style={{display:"none"}}/>
                 </div>
-              )}
+                </>
+                )    
+            }
             </div>
-
+                 
             <FormGroup>
               <Input type="text" name="name" id="name" placeholder="Name"  value={name} onChange={e => setName(e.target.value)} />
             </FormGroup>
@@ -280,7 +286,7 @@ return (
               </Label>
             </FormGroup>
             <Button type="submit" color="primary" block className="text-uppercase" >
-              {isUpdate ? "Update Contact" : "Create Repository"}
+              {isUpdate ? "Create Repository" : "Update Contact" }
             </Button>
           </Form>
         </Col>
