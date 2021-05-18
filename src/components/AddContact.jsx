@@ -50,6 +50,8 @@ const AddContact = () => {
     const [star, setStar] = useState(false);
     const [isUpdate, setIsUpdate] = useState(false);
 
+    const [filename, setFilename] = useState('');
+
      // when their is the contact to update in the Context state
      // then setting state with the value of the contact
      // will changes only when the contact to update changes
@@ -60,7 +62,7 @@ const AddContact = () => {
             setPhoneNumber(contactToUpdate.phoneNumber);
             setAddress(contactToUpdate.address);
             setStar(contactToUpdate.star);
-            setDownloadUrl(contactToUpdate.picture);
+            setDownloadUrl(contactToUpdate.picture.downloadURL);
 
             // also setting is update to true to make the update action instead the addContact action
             setIsUpdate(true);
@@ -75,12 +77,12 @@ const AddContact = () => {
               ]
           };
 
-
    // To upload image to firebase and then set the the image link in the state of the app
    const imagePicker = async e => {
     // TODO: upload image and set D-URL to state
     try{
       const file = e.target.files[0];
+      setFilename(file.name);
 
       var metadata = {
         contentType: file.type
@@ -179,7 +181,6 @@ const AddContact = () => {
     // isUpdate wll be true when the user came to update the contact
     // when their is contact then updating and when no contact to update then adding contact
     //TODO: set isUpdate value
-
     // to handle the bug when the user visit again to add contact directly by visiting the link
     dispatch({
       type: CONTACT_TO_UPDATE,
@@ -212,7 +213,7 @@ return (
             className={ tabvalue === 'Overview' ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'} />   
         {/*Set method remove Duplicate value from listing*/}
         { [...new Set(ResumeData.projects.map((items) => items.tag ))].map( (n)=>  (
-            <Tab label={n}  onClick={()=> setVisible(false)} value={n} className={tabvalue === n ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'}/>
+            <Tab label={n}  onClick={()=> (setVisible(false), setFilename('')) } value={n} className={tabvalue === n ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'}/>
           ) )
         }
     </Tabs>
@@ -252,10 +253,10 @@ return (
                 <Spinner type="grow" color="primary" />
               ) : (
                 <div>
-                  <label htmlFor="imagepicker" className="">
-                    <img src={downloadUrl} alt="" className="profile" />
+                  <label htmlFor="imagepicker" className="label">
+                    <img src={filename} alt={filename} className="profile rounded-circle" style={{width:'40px',height:'40px'}}/>
                   </label>
-                  <input type="file" name="image" onChange={e => imagePicker(e)} id="imagepicker" accept="image/*" multiple={false} className="hidden" />
+                  <input type="file" name={filename} onChange={e => imagePicker(e)} id="imagepicker" accept="image/*" multiple={false}  style={{display:"none"}}/>
                 </div>
               )}
             </div>
@@ -279,7 +280,7 @@ return (
               </Label>
             </FormGroup>
             <Button type="submit" color="primary" block className="text-uppercase" >
-              {isUpdate ? "Update Contact" : "Add Contact"}
+              {isUpdate ? "Update Contact" : "Create Repository"}
             </Button>
           </Form>
         </Col>
