@@ -1,5 +1,5 @@
 // https://firebase.google.com/docs/database/web/read-and-write?authuser=1#read_data_once
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Row, Col } from "reactstrap";
 // icons 
 import { FaRegStar, FaStar } from "react-icons/fa";
@@ -21,6 +21,13 @@ const Contact = ({ contact, contactKey }) => {
   //TODO: DONE destructuring dispatch from the context
   const { dispatch } = useContext(UserContext);
   
+  useEffect( () => {
+    const today = new Date();
+    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date+' '+time; 
+  }, [contact]);
+
   // history hooks to get history
   const history = useHistory();
   
@@ -69,7 +76,7 @@ const Contact = ({ contact, contactKey }) => {
     // and pushing to the add contact screen
     history.push("/contact/add");
   };
-
+  
   // to view a single contact in the contact/view screen
   const viewSingleContact = contact => {
     // setting single contact in state
@@ -95,15 +102,21 @@ const Contact = ({ contact, contactKey }) => {
           </div>
         </Col>
         <Col md="2" className="d-flex justify-content-center align-items-center">
-          <img src={contact.picture?.downloadURL} alt={contact.picture?.downloadURL} style={{width:'100px',height:'85px'}} className="rounded-circle profile" />
+          <img src={contact.picture} alt={contact.picture?.downloadURL} style={{width:'100px',height:'85px'}} className="rounded-circle profile" />
         </Col>
-        <Col md="7" onClick={() => viewSingleContact(contact)}>
+        <Col md="6" onClick={() => viewSingleContact(contact)}>
           <div className="text-primary">{contact.name}</div>
 
           <div className="text-secondary">{contact.phoneNumber}</div>
           <div className="text-secondary">{contact.email}</div>
 
           <div className="text-info">{contact.address}</div>
+        </Col>
+        <Col md="1" onClick={() => viewSingleContact(contact)}>
+           {
+            
+           }
+          
         </Col>
         <Col md="2" className="d-flex justify-content-center align-items-center">
           <MdDelete className="text-danger icon btn-sm" onClick={() => deleteContact()} color="danger"  size="sm" />
