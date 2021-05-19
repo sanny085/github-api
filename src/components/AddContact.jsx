@@ -32,7 +32,8 @@ import './AddContact.css';
 
 const AddContact = () => {
     const {state, dispatch} = useContext(UserContext);
-    
+    const context = useContext(UserContext);
+
     const [visible, setVisible] = useState(false);
 
     const [tabvalue, setTabvalue] = useState("Overview");
@@ -55,6 +56,7 @@ const AddContact = () => {
      // when their is the contact to update in the Context state
      // then setting state with the value of the contact
      // will changes only when the contact to update changes
+    
     useEffect( () => {
         if (contactToUpdate) {
             setName(contactToUpdate.name);
@@ -214,7 +216,7 @@ return (
             className={ tabvalue === 'Overview' ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'} />   
         {/*Set method remove Duplicate value from listing*/}
         { [...new Set(ResumeData.projects.map((items) => items.tag ))].map( (n)=>  (
-            <Tab label={n}  onClick={()=> (setVisible(false), setFilename(''), setDownloadUrl(null)) } value={n} className={tabvalue === n ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'}/>
+            <Tab label={n} onClick={()=> (setVisible(false), setFilename(''), setDownloadUrl(null)) } value={n} className={tabvalue === n ? 'customTabs_item active mx-2' : 'customTabs_item mx-2'}/>
           ) )
         }
     </Tabs>
