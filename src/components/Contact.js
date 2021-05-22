@@ -20,13 +20,16 @@ import { toast } from "react-toastify";
 const Contact = ({ contact, contactKey }) => {
   //TODO: DONE destructuring dispatch from the context
   const { dispatch } = useContext(UserContext);
-  
+ 
+
   useEffect( () => {
+  
     const today = new Date();
     const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     const dateTime = date+' '+time; 
-  }, [contact]);
+  
+  }  );
 
   // history hooks to get history
   const history = useHistory();
@@ -91,7 +94,7 @@ const Contact = ({ contact, contactKey }) => {
 
   return (
     <>
-      <Row>
+        <Row>
         <Col md="1" className="d-flex justify-content-center align-items-center">
           <div className="icon" onClick={() => updateImpContact()}>
             {contact.star ? (
@@ -123,6 +126,9 @@ const Contact = ({ contact, contactKey }) => {
           <MdEdit className="icon text-info ml-2 btn-sm" onClick={() => updateContact()}  size="sm"/>
         </Col>
       </Row>
+    
+    
+      
     </>
   );
   
