@@ -6,7 +6,7 @@ import UserContext from "../context/UserContext";
 
 const MainContacts = () => {
   const { state } = useContext(UserContext);
-
+  const context = useContext(UserContext);
   // destructuring contacts and isLoading from state
   const { contacts, isLoading } = state;
   // history hooks from react router dom to get history
@@ -34,17 +34,23 @@ const MainContacts = () => {
           NO Contacts found in firebase
         </div>
       ) : (
-        <ListGroup>
-          {Object.entries(contacts).map(([key, value]) => (
-            <ListGroupItem key={key} className="m-1">
-                <Contact contact={value} contactKey={key} />
+        
+        <>
+        {
+          context.userApi  ? null : (<ListGroup>
+            {Object.entries(contacts).map(([key, value]) => (
+              <ListGroupItem key={key} className="m-1">
+                 <Contact contact={value} contactKey={key} />
             </ListGroupItem>
            ))}
-        </ListGroup>
+        </ListGroup>) 
+        }
+        </>
        )
       }
      
     </Container>
   );
 };
+
 export default MainContacts;
