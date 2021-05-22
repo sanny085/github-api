@@ -201,7 +201,6 @@ const AddContact = () => {
      
     // also setting is update to true to make the update action instead the addContact action
     setIsUpdate(true);
-
   };
 
 
@@ -239,7 +238,6 @@ return (
    
      {/*Repository*/} 
      {
-       
         tabvalue === "Repository" ? (
             <>
             <div class="d-flex flex-row-reverse bd-highlight">
@@ -302,6 +300,8 @@ return (
             </>
         ) : null 
      }
+     {/*End Repository*/}
+
     </Grid>
  </Grid>
 {/*End Project*/}
