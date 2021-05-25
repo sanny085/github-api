@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 
 import { Row, Container, Col, Input, Button, Form, InputGroup, InputGroupAddon } from 'reactstrap';
 import Axios from 'axios';
-
 import UserCart from '../components/UserCart';
 import Repos from '../components/Repos';
 import {Redirect} from 'react-router-dom';
@@ -15,7 +14,6 @@ const Home = () => {
     const context = useContext(UserContext);
   //   const [query, setQuery] = useState('');
   //   const [user, setUser] = useState(null);
-     
   //   const fetchDetails = async () => {
   //       try{
   //           const { data } = await Axios.get(`https://api.github.com/users/${query}`);
@@ -33,7 +31,6 @@ const Home = () => {
    if(!context.user?.uid) {
        return <Redirect to="/signin" />
    }
-
     return (
      <Container fluid>
        <Row className="mt-3">
