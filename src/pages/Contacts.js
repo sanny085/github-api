@@ -37,7 +37,6 @@ const Contacts = () => {
       </div>
     );
   }
-
   return (
     <Container className="mt-4">
       {/* TODO: Loop through FIREBASE objects  */}
