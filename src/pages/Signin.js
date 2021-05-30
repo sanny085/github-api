@@ -38,11 +38,9 @@ const Signin = () => {
        e.preventDefault();
        handleSignUp();
     }
-  
    if(context.user?.uid) {
        return <Redirect to="/" />
    }
-
 return (
 <Container  >
  <Row>
@@ -75,5 +73,4 @@ return (
 </Container>
     )
 }
-
 export default Signin;
