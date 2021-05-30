@@ -48,12 +48,9 @@ const Home = () => {
          <Col md="9">
               { context.user ? <AddContact /> : '' }
               { context.user ? <Repos repos_url={context.userApi?.repos_url} /> : null }
-       
          </Col>
        </Row>
      </Container>
     )
 }
-
 export default Home;
-
