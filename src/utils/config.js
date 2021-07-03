@@ -1,5 +1,3 @@
-//TODO: add firebase configuration and export it
-
 //image configuration
 export const imageConfig = {
   quality: 0.2,
