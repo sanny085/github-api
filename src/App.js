@@ -33,7 +33,6 @@ import { SET_CONTACT, SET_LOADING } from './context/action.types';
  
 // init (Initialize) Firebase
 firebase.initializeApp(firebaseConfig);
-
 const initialState = {
   contacts: [],
   contact: {},
@@ -43,7 +42,6 @@ const initialState = {
 };
 
 const App = () => {
-
   const [state, dispatch] = useReducer(reducer, initialState);
   
   const [user, setUser] = useState(null);
@@ -71,7 +69,6 @@ const App = () => {
    );
 
   };
-
   // getting contact  when component did mount
   useEffect(() => {
     getContacts() 
