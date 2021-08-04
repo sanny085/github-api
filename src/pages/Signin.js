@@ -42,7 +42,7 @@ const Signin = () => {
        return <Redirect to="/" />
    }
 return (
-<Container  >
+<Container>
  <Row>
     <Col lg='6' className="offset-lg-3 mt-5 mx-auto">
          <div className="p-2 text-center text">
